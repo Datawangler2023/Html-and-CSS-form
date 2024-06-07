@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="display.css">
+
+    <title>Student Details Form</title>
+</head>
+<body>
+
+<form id="studentForm" class="flex-container">
+    <div class="flex-item">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="flex-item">
+        <label for="mobile">Mobile:</label>
+        <input type="tel" id="mobile" name="mobile" required>
+    </div>
+
+    <div class="flex-item">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="flex-item">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+    </div>
+
+    <div class="flex-item">
+        <label for="marks">Marks:</label>
+        <input type="number" id="marks" name="marks" required>
+    </div>
+
+    <div class="flex-item">
+        <label for="class">Class:</label>
+        <input type="text" id="class" name="class" required>
+    </div>
+
+    <div class="flex-item" style="flex: 0 0 100%;">
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea>
+    </div>
+
+    <div align="center" class="flex-item" style="flex: 0 0 100%;">
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+<center>
+<h2>Student Data Table</h2>
+<table border="1" id="studentTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Date of Birth</th>
+            <th>Marks</th>
+            <th>Class</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+   document.getElementById('studentForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const tableBody = document.querySelector('#studentTable tbody');
+
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td>${formData.get('name')}</td>
+        <td>${formData.get('mobile')}</td>
+        <td>${formData.get('email')}</td>
+        <td>${formData.get('address')}</td>
+        <td>${formData.get('dob')}</td>
+        <td>${formData.get('marks')}</td>
+        <td>${formData.get('class')}</td>
+    `;
+
+    tableBody.appendChild(newRow);
+
+    // Reset the form after adding data to the table
+    event.target.reset();
+});
+
+</script>
+</center>
+</body>
+</html>
